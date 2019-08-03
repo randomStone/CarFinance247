@@ -1,0 +1,11 @@
+
+IF (NOT EXISTS (SELECT * 
+                 FROM INFORMATION_SCHEMA.TABLES 
+                 WHERE  TABLE_NAME = 'CUSTOMERS'))
+CREATE TABLE CUSTOMERS(
+    ID uniqueidentifier PRIMARY KEY NOT NULL,
+    FirstName VARCHAR(64) NOT NULL,
+    Surname VARCHAR(64) NOT NULL,
+    EMail VARCHAR (64) NOT NULL,
+    CustomerPassword VARCHAR(64) NOT NULL
+);
