@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CarFinance247TechTest.Modal;
@@ -18,6 +19,10 @@ namespace CarFinance247TechTest.Domain
         public async Task<IEnumerable<Customer>> getAllCustomers()
         {
             return await this.repository.getAllCustomers();
+        }
+
+        public async Task<Customer> GetCustomerByID(Guid id){
+            return await this.repository.getCustomerByID(id);
         }
 
     }

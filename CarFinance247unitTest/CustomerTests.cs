@@ -28,5 +28,21 @@ namespace CarFinance247unitTest
             Assert.Equal(2,result.Count());
             Assert.Equal(expected,result);
         }
+        [Fact]
+        public async Task GetCustomerByID(){
+            var id = Guid.NewGuid();
+            var expected = new Customer(){ID=id,FirstName="Bob",Surname ="Bobby",EMail ="bob@bobby.com",CustomerPassword ="password"};
+
+            var fakeRepo = new FakeCustomerRepository();
+            fakeRepo.GetCustomerByIDData = expected;
+            var customerService =new CustomerService(fakeRepo);
+            
+            var result = await customerService.GetCustomerByID(id);
+
+            Assert.NotNull(result);
+            Assert.Equal(expected.ID,result.ID);
+            Assert.Equal(expected.FirstName,result.FirstName);
+
+        }
     }
 }
