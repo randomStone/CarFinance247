@@ -19,6 +19,9 @@ namespace CarFinance247TechTest
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostingContext, config)=>{
+                    config.AddCommandLine(args);
+                }).UseUrls("http://0.0.0.0:5000")
                 .UseStartup<Startup>();
     }
 }

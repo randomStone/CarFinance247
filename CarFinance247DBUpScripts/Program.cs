@@ -14,8 +14,8 @@ namespace CarFinance247DBUpScripts
         {
             var connectionString =
          args.FirstOrDefault()
-         ?? "Server=(local)\\SqlExpress; Database=CarFinance247TechTestRobStone; Trusted_connection=true";
-            //Makes sure database exists
+         ?? "Server=db;Database=CarFinance247TechTestRobStone;User=sa;Password=qxPeKmMoHyq4;";
+            //Makes sure database exists 
             EnsureDatabase.For.SqlDatabase(connectionString);
             var upgrader =
                 DeployChanges.To

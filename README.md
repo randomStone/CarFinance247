@@ -3,44 +3,35 @@
 
 This program uses .NET Core 2.2.401, please ensure you have this version
 
-## Creating the db
-
-run dbup scripts to build DB using the commands below from the root of the repo
-
-```powershell
-  dotnet build
-  dotnet run --project .\CarFinance247DBUpScripts\
-```
-
-This will create an database called CarFinance247TechTestRobStone in your local SQLEXPRESS instance with an prepopulated DB Table. You can pass it another connection string if you wish to build the database somewhere else. Note: if you do change the location of the db make sure you change the connection string in appsettings.Development.json
-
 ## Running the WEB API
 
-First of all run  
+To build the Web Api container
 
 ```powershell
-dotnet build
+  docker-compose build
 ```
 
-Then to launch to the server
+then run
 
 ```powershell
- dotnet run --project .\CarFinance247TechTest\
+  docker-compose up
 ```
 
-The Http server will be running on <http://localhost:5000/>
+that will launch the server
+
+The Http server will be running on <http://localhost:8000/>
 
 ### GET all Customers
 
-Http GET  <http://localhost:5000/api/Customer> will return a json array with all customers
+Http GET  <http://localhost:8000/api/Customer> will return a json array with all customers
 
 ### GET Customer by ID
 
-Http GET <http://localhost:5000/api/Customer/af5d23bf-490d-418a-a7ed-16cb4e8f907c> will return a json object repersenting the customer with id af5d23bf-490d-418a-a7ed-16cb4e8f907c
+Http GET <http://localhost:8000/api/Customer/af5d23bf-490d-418a-a7ed-16cb4e8f907c> will return a json object repersenting the customer with id af5d23bf-490d-418a-a7ed-16cb4e8f907c
 
 ### POST Customer
 
-Http POST <http://localhost:5000/api/Customer>
+Http POST <http://localhost:8000/api/Customer>
 with example json body
 
 ```JSON
@@ -55,7 +46,7 @@ with example json body
 
 ### PUT Customer
 
-Http PUT <http://localhost:5000/api/Customer/af5d23bf-490d-418a-a7ed-16cb4e8f907c>
+Http PUT <http://localhost:8000/api/Customer/af5d23bf-490d-418a-a7ed-16cb4e8f907c>
 with example json body
 
 ```JSON
@@ -69,7 +60,7 @@ with example json body
 
 ### Delete Customer
 
-Http Delete <http://localhost:5000/api/Customer/af5d23bf-490d-418a-a7ed-16cb4e8f907c>
+Http Delete <http://localhost:8000/api/Customer/af5d23bf-490d-418a-a7ed-16cb4e8f907c>
 will delete customer with given id
 
 ## Running the Unit Tests
