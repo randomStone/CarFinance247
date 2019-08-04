@@ -38,6 +38,21 @@ Http GET  <http://localhost:5000/api/Customer> will return a json array with all
 
 Http GET <http://localhost:5000/api/Customer/af5d23bf-490d-418a-a7ed-16cb4e8f907c> will return a json object repersenting the customer with id af5d23bf-490d-418a-a7ed-16cb4e8f907c
 
+### POST Customer
+
+Http POST <http://localhost:5000/api/Customer>
+with example json body
+
+```JSON
+  {
+    "id": "960f2a37-f889-467e-96f0-bd32fb7c71ee",
+    "FirstName":"New",
+    "Surname":"name",
+    "EMail":"example@example.com",
+    "CustomerPassword":"password"
+  }
+```
+
 ## Running the Unit Tests
 
 Simply run

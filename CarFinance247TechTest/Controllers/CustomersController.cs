@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Threading;
 using CarFinance247TechTest.Domain;
 using Microsoft.AspNetCore.Mvc;
 using CarFinance247TechTest.Modal;
@@ -41,6 +40,18 @@ namespace CarFinance247TechTest.Controllers
 
         }
 
+        // POST api/Customer
+        [HttpPost]
+        public async Task<ActionResult<Customer>> CreateCustomer([FromBody] Customer customer)
+        {
+            if(!ModelState.IsValid){
+                return BadRequest();
+            }
 
+            var result = await this.service.CreateCustomer(customer);
+            return CreatedAtAction(nameof(Get),new {id=result.ID},result);
+
+        }
+        
     }
 }

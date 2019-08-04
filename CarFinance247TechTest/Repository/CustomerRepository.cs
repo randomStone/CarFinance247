@@ -38,5 +38,14 @@ namespace CarFinance247TechTest.Repository
             }
 
         }
+        public async Task CreateCustomer(Guid id, string FirstName, string Surname, string EMail, string customerPassword)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                await connection.ExecuteAsync(@"INSERT INTO CUSTOMERS (ID,FirstName, Surname, EMail,CustomerPassword)
+                                                VALUES (@id,@firstName,@surname,@email,@customerPassword)", 
+                                                new { id = id, FirstName = FirstName,surname=Surname, email = EMail, customerPassword = customerPassword }).ConfigureAwait(false);
+            }
+        }
     }
 }

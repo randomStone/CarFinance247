@@ -10,6 +10,16 @@ namespace CarFinance247unitTest
     {
         public IEnumerable<Customer> GetAllCustomersData {private get;  set; }
         public Customer GetCustomerByIDData {private get; set;}
+
+        public Customer CreatedCustomer {get; private set;}
+
+        public Task CreateCustomer(Guid id, string FirstName, string Surname, string EMail, string customerPassword)
+        {
+            this.GetCustomerByIDData = new Customer(){ID=id,FirstName = FirstName,Surname = Surname,EMail = EMail,CustomerPassword=customerPassword};
+            this.CreatedCustomer =this.GetCustomerByIDData;
+            return Task.CompletedTask;
+        }
+
         public Task<IEnumerable<Customer>> getAllCustomers()
         {
             
@@ -20,5 +30,7 @@ namespace CarFinance247unitTest
         {
              return Task.FromResult(GetCustomerByIDData);
         }
+
+        
     }
 }

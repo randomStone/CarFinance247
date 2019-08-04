@@ -44,5 +44,32 @@ namespace CarFinance247unitTest
             Assert.Equal(expected.FirstName,result.FirstName);
 
         }
+
+        [Fact]
+        public async Task CreateCustomer(){
+            var id = Guid.NewGuid();
+            var newCustomer = new Customer(){ 
+                ID=id,
+                FirstName="Bob",
+                Surname ="Bobby",
+                EMail ="bob@bobby.com",
+                CustomerPassword ="password"
+            };
+            var fakeRepo = new FakeCustomerRepository();
+            var customerService =new CustomerService(fakeRepo);
+
+            var result = await customerService.CreateCustomer(newCustomer);
+
+            Assert.NotNull(result);
+            Assert.Equal(newCustomer.ID,result.ID);
+            Assert.Equal(newCustomer.FirstName,result.FirstName);
+            Assert.NotNull(fakeRepo.CreatedCustomer);
+            Assert.Equal(newCustomer.ID,fakeRepo.CreatedCustomer.ID);
+            Assert.Equal(newCustomer.FirstName,fakeRepo.CreatedCustomer.FirstName);
+
+        }
+
+      
+     
     }
 }

@@ -12,6 +12,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using CarFinance247TechTest.Modal;
 
 namespace CarFinance247TechTest
 {
@@ -29,7 +32,9 @@ namespace CarFinance247TechTest
         {
             services.AddScoped<ICustomerRepository,CustomerRepository>();
             services.AddScoped<CustomerService,CustomerService>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddTransient<IValidator<Customer>,CustomerValidator>();
+            services.AddMvc().AddFluentValidation().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+           ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

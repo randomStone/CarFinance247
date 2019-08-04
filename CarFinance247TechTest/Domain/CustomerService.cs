@@ -25,5 +25,12 @@ namespace CarFinance247TechTest.Domain
             return await this.repository.getCustomerByID(id);
         }
 
+        public async Task<Customer> CreateCustomer(Customer request){
+             
+            await this.repository.CreateCustomer(request.ID,request.FirstName,request.Surname,request.EMail,request.CustomerPassword);
+            return await this.GetCustomerByID(request.ID);
+        }
+
+
     }
 }
