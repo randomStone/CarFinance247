@@ -32,7 +32,8 @@ namespace CarFinance247TechTest
         {
             services.AddScoped<ICustomerRepository,CustomerRepository>();
             services.AddScoped<CustomerService,CustomerService>();
-            services.AddTransient<IValidator<Customer>,CustomerValidator>();
+            services.AddTransient<IValidator<CreateCustomerRequest>,CreateCustomerValidator>();
+             services.AddTransient<IValidator<UpdateCustomerRequest>,UpdateCustomerValidator>();
             services.AddMvc().AddFluentValidation().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
            ;
         }

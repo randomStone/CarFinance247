@@ -42,7 +42,7 @@ namespace CarFinance247TechTest.Controllers
 
         // POST api/Customer
         [HttpPost]
-        public async Task<ActionResult<Customer>> CreateCustomer([FromBody] Customer customer)
+        public async Task<ActionResult<Customer>> CreateCustomer([FromBody] CreateCustomerRequest customer)
         {
             if(!ModelState.IsValid){
                 return BadRequest();
@@ -51,6 +51,26 @@ namespace CarFinance247TechTest.Controllers
             var result = await this.service.CreateCustomer(customer);
             return CreatedAtAction(nameof(Get),new {id=result.ID},result);
 
+        }
+
+         // PUT api/Customer/Guid
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Customer>>  Put([FromBody] UpdateCustomerRequest customer,Guid Id)
+        {
+             if(!ModelState.IsValid){
+                return BadRequest();
+            }
+
+            var result = await this.service.UpdateCustomer(customer,Id);
+            return new OkObjectResult(result);
+        }
+
+         // DELETE api/Customer/Guid
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Customer>> Delete(Guid id)
+        {
+              var result = await this.service.DeleteCustomer(id);
+            return new OkObjectResult(result); 
         }
         
     }

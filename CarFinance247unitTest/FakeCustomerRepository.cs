@@ -12,11 +12,19 @@ namespace CarFinance247unitTest
         public Customer GetCustomerByIDData {private get; set;}
 
         public Customer CreatedCustomer {get; private set;}
+        public Customer UpdatedCustomer {get; private set;}
+        public Guid DeletedCustomerId {get; private set;}
 
         public Task CreateCustomer(Guid id, string FirstName, string Surname, string EMail, string customerPassword)
         {
             this.GetCustomerByIDData = new Customer(){ID=id,FirstName = FirstName,Surname = Surname,EMail = EMail,CustomerPassword=customerPassword};
             this.CreatedCustomer =this.GetCustomerByIDData;
+            return Task.CompletedTask;
+        }
+
+        public Task DeleteCustomer(Guid id)
+        {
+          this.DeletedCustomerId =id;
             return Task.CompletedTask;
         }
 
@@ -31,6 +39,11 @@ namespace CarFinance247unitTest
              return Task.FromResult(GetCustomerByIDData);
         }
 
-        
+        public Task UpdateCustomer(Guid id, string FirstName, string Surname, string EMail, string customerPassword)
+        {
+            this.GetCustomerByIDData = new Customer(){ID=id,FirstName = FirstName,Surname = Surname,EMail = EMail,CustomerPassword=customerPassword};
+            this.UpdatedCustomer =this.GetCustomerByIDData;
+            return Task.CompletedTask;
+        }
     }
 }

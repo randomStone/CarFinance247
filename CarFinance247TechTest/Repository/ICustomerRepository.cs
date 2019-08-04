@@ -10,5 +10,7 @@ namespace CarFinance247TechTest.Repository
         Task<IEnumerable<Customer>> getAllCustomers();
         Task<Customer> getCustomerByID(Guid id);
         Task CreateCustomer(Guid id, string FirstName, string Surname, string EMail, string customerPassword);
+        Task UpdateCustomer(Guid id, string FirstName, string Surname, string EMail, string customerPassword);
+        Task DeleteCustomer(Guid id);
     }
 }

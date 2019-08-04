@@ -43,8 +43,29 @@ namespace CarFinance247TechTest.Repository
             using (var connection = new SqlConnection(connectionString))
             {
                 await connection.ExecuteAsync(@"INSERT INTO CUSTOMERS (ID,FirstName, Surname, EMail,CustomerPassword)
-                                                VALUES (@id,@firstName,@surname,@email,@customerPassword)", 
-                                                new { id = id, FirstName = FirstName,surname=Surname, email = EMail, customerPassword = customerPassword }).ConfigureAwait(false);
+                                                VALUES (@id,@firstName,@surname,@email,@customerPassword)",
+                                                new { id = id, FirstName = FirstName, surname = Surname, email = EMail, customerPassword = customerPassword }).ConfigureAwait(false);
+            }
+        }
+
+        public async Task UpdateCustomer(Guid id, string FirstName, string Surname, string EMail, string customerPassword)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                await connection.ExecuteAsync(@"UPDATE CUSTOMERS
+                                                SET FirstName = @firstName,Surname = @surname, EMail = @email,CustomerPassword = @customerPassword
+                                                WHERE ID = @id",
+                                                new { id = id, FirstName = FirstName, surname = Surname, email = EMail, customerPassword = customerPassword }).ConfigureAwait(false);
+            }
+        }
+
+        public async Task DeleteCustomer(Guid id)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                await connection.ExecuteAsync(@"DELETE FROM CUSTOMERS
+                                                WHERE ID = @id",
+                                                    new { id = id }).ConfigureAwait(false);
             }
         }
     }

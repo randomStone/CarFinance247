@@ -53,6 +53,25 @@ with example json body
   }
 ```
 
+### PUT Customer
+
+Http PUT <http://localhost:5000/api/Customer/af5d23bf-490d-418a-a7ed-16cb4e8f907c>
+with example json body
+
+```JSON
+  {
+    "FirstName":"New",
+    "Surname":"name2",
+    "EMail":"example@example.com",
+    "CustomerPassword":"password"
+  }
+```
+
+### Delete Customer
+
+Http Delete <http://localhost:5000/api/Customer/af5d23bf-490d-418a-a7ed-16cb4e8f907c>
+will delete customer with given id
+
 ## Running the Unit Tests
 
 Simply run

@@ -48,7 +48,7 @@ namespace CarFinance247unitTest
         [Fact]
         public async Task CreateCustomer(){
             var id = Guid.NewGuid();
-            var newCustomer = new Customer(){ 
+            var newCustomer = new CreateCustomerRequest(){ 
                 ID=id,
                 FirstName="Bob",
                 Surname ="Bobby",
@@ -68,6 +68,51 @@ namespace CarFinance247unitTest
             Assert.Equal(newCustomer.FirstName,fakeRepo.CreatedCustomer.FirstName);
 
         }
+
+         [Fact]
+        public async Task UpdateCustomer(){
+            var id = Guid.NewGuid();
+            var updatedCustomer = new UpdateCustomerRequest(){ 
+            
+                FirstName="Bob",
+                Surname ="Bobby",
+                EMail ="bob@bobby.com",
+                CustomerPassword ="password"
+            };
+            var fakeRepo = new FakeCustomerRepository();
+            var customerService =new CustomerService(fakeRepo);
+
+            var result = await customerService.UpdateCustomer(updatedCustomer,id);
+
+            Assert.NotNull(result);
+            Assert.Equal(id,result.ID);
+            Assert.Equal(updatedCustomer.FirstName,result.FirstName);
+            Assert.NotNull(fakeRepo.UpdatedCustomer);
+            Assert.Equal(id,fakeRepo.UpdatedCustomer.ID);
+            Assert.Equal(updatedCustomer.FirstName,fakeRepo.UpdatedCustomer.FirstName);
+
+        }
+
+        [Fact]
+        public async Task DeleteCustomer(){
+            var id = Guid.NewGuid();
+
+            var customerToBeDeleted = new Customer(){
+                ID = id,
+                FirstName="Bob",
+                Surname ="Bobby",
+                EMail ="bob@bobby.com",
+                CustomerPassword ="password"
+            };
+            var fakeRepo = new FakeCustomerRepository();
+            var customerService =new CustomerService(fakeRepo);
+
+            var result = await customerService.DeleteCustomer(id);
+
+            Assert.Equal(id,fakeRepo.DeletedCustomerId);
+
+        }
+
 
       
      
