@@ -1,8 +1,6 @@
 
 # Run the Program
 
-This program uses .NET Core 2.2.401, please ensure you have this version
-
 ## Running the WEB API
 
 To build the Web Api container
